@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<!-- <p>
+  <strong>User:</strong>
+  <%= @post.user_id %>
+</p> -->
+
+<%= render 'comments/form', comment: @comment %>
+
+<div class="container">
+	<% @post.comments.each do |comment| %>
+		<div class="card">
+			<div class="card-body">
+				<div class="card-title">
+													
+				</div>
+				<div class="card-text"><%= comment.body.html_safe %> <br><br></div>	
+				<div class="card-footer text-muted text-right">
+					<% if (Time.zone.now - comment.created_at).to_i / 1.day < 1 %>
+						Commented <%= time_ago_in_words(comment.created_at)%> ago.
+					<% else %>
+						Created on <%= comment.created_at.strftime("%b #{comment.created_at.strftime("%e").to_i.ordinalize} %H:%M:%S") %>
+					<% end %>
+				</div>
+				
+			</div>
+		</div>
+
+		<br><br>
+	<% end %>
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
