@@ -13,8 +13,10 @@
 
 
     <nav class="navbar navbar-expand-xl justify-content-between navbar-light bg-dark">
-      
-        <ul class="navbar-nav w-100">
+      <ul class="navbar-nav w-100">
+        
+      <% if user_signed_in? %>
+        
             <li class="nav-item active">
             <a class="nav-link text-light" href=<%= root_path %>><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
           </li>
@@ -30,7 +32,7 @@
         
         
           <li class="nav-item dropdown ml-auto">
-            <% if user_signed_in? %>
+            
 
                 <div class="btn-group">
                   <button type="button" class="btn btn-light"><%= current_user.email %></button>
@@ -43,17 +45,16 @@
                       <a class="dropdown-item" href=<%= destroy_user_session_path %> data-method="delete">Sign Out</a>
                   </div>
                 </div>
-
+            </li>
                                      
                   
               <% else %>
 
+              <li class="nav-item dropdown ml-auto">
                   <a class="btn btn-success btn-sm" href=<%= new_user_session_path %>>Sign In</a>
                   <a class="btn btn-info btn-sm" href=<%= new_user_registration_path %>>Sign Up</a>
-
-              <% end %>
-          </li>
-
+              </li>
+          <% end %>
           </ul>
       </nav>
 
