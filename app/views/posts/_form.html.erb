@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -11,14 +13,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-group">
     <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class:"form-control" %>
   </div>
 
   <div class="field">
@@ -29,3 +31,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+</div>

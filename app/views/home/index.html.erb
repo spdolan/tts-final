@@ -1,6 +1,9 @@
 
-<h2>Hey there, <%= current_user.email %>!</h2>
+<div class="container-fluid">
+<div class="jumbotron"><h2>Hey there, <%= current_user.email %>!</h2></div>
 
-<h3>You can see your <%= link_to "Posts here", post_path %>.</h3>
+<h3>You can see your <%= link_to "Posts here", posts_path %>.</h3>
 
-<p>Or, create a <%= link "New Post", new_post_path %></p>
+<p>Or, create a <%= link_to "New Post", new_post_path %></p>
+
+</div>

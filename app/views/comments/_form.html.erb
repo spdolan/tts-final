@@ -1,3 +1,4 @@
+<div class="container w-40">
 <%= form_with(model: comment, local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +12,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="field form-group">
+    
+    <%= form.text_area :body, class:"form-control", placeholder:"Enter your comment here" %>
   </div>
 
   <div class="field">
@@ -28,3 +29,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

@@ -16,29 +16,39 @@
 </p> -->
 
 <%= render 'comments/form', comment: @comment %>
+<br><br>
 
+<h3>Folks are saying:</h3><br>
 <div class="container">
-	<% @post.comments.each do |comment| %>
-		<div class="card">
-			<div class="card-body">
-				<div class="card-title">
-													
+	<% if @post.comments.count != 0 %>
+		<% @post.comments.each do |comment| %>
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title">
+														
+					</div>
+					<div class="card-text"><%= comment.body.html_safe %> <br><br></div>	
+					<div class="card-footer text-muted text-right">
+						<% if (Time.zone.now - comment.created_at).to_i / 1.day < 1 %>
+							Commented <%= time_ago_in_words(comment.created_at)%> ago.
+						<% else %>
+							Created on <%= comment.created_at.strftime("%b #{comment.created_at.strftime("%e").to_i.ordinalize} %H:%M:%S") %>
+						<% end %>
+					</div>
+					
 				</div>
-				<div class="card-text"><%= comment.body.html_safe %> <br><br></div>	
-				<div class="card-footer text-muted text-right">
-					<% if (Time.zone.now - comment.created_at).to_i / 1.day < 1 %>
-						Commented <%= time_ago_in_words(comment.created_at)%> ago.
-					<% else %>
-						Created on <%= comment.created_at.strftime("%b #{comment.created_at.strftime("%e").to_i.ordinalize} %H:%M:%S") %>
-					<% end %>
-				</div>
-				
 			</div>
-		</div>
 
-		<br><br>
+			<br><br>
+		<% end %>
+	<% else %>
+
+		<p>There aren't any comments here just yet!</p>
 	<% end %>
+
+<br>
+
 </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Edit Post', edit_post_path(@post) %> |
+<%= link_to 'Home', root_path %>
